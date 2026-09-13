@@ -1,139 +1,169 @@
-export interface Project {
-  id: string;
+export interface PersonalInfo {
+  name: string;
   title: string;
-  tagline: string;
-  description: string;
-  context: string;
-  role: string;
-  stack: string[];
-  results: string[];
-  liveUrl?: string;
-  githubUrl?: string;
-  isPlaceholder?: boolean;
+  location: string;
+  postalCode: string;
+  timezone: string;
+  email: string;
+  badgeText: string;
+  heroBio: string;
+  cvUrl: string;
+  socials: {
+    github: string;
+    linkedin: string;
+    dribbble: string;
+  };
 }
 
-export interface SkillCategory {
+export interface AboutStats {
+  education: string;
+  location: string;
+  focus: string;
+}
+
+export interface TechStackCategory {
   title: string;
   skills: string[];
+}
+
+export interface Project {
+  id: string;
+  subLabel: string;
+  title: string;
+  description: string;
+  stack: string[];
+  rightColType: "metric" | "confidential" | "academic" | "exploratory";
+  metricLabel?: string;
+  metricValue?: string;
+  metricSubtext?: string;
+  rightColText?: string;
+  isPrivate?: boolean;
+  liveUrl?: string;
+  githubUrl?: string;
 }
 
 export interface Experience {
   role: string;
   company: string;
   duration: string;
-  description?: string;
+  bullets: string[];
+  skills: string[];
 }
 
-export const personalInfo = {
+export const personalInfo: PersonalInfo = {
   name: "Fikri Bintang Achmada",
   title: "Frontend Developer & UI/UX Designer",
   location: "Denpasar, Bali, Indonesia",
+  postalCode: "80118",
+  timezone: "UTC+8",
   email: "bintangfikri31@gmail.com",
-  valueProp: "I turn designs into fast, responsive interfaces — from Figma prototypes to production code.",
-  badgeText: "Open to remote opportunities",
-  cvUrl: "/assets/CV_Fikri_Bintang_Achmada_CV.pdf", // Path to CV file
-  aboutText: [
-    "I am a software engineering fresh graduate from Politeknik Negeri Bali with a GPA of 3.76/4.00. Combining a strong analytical engineering background with a sharp eye for modern UI/UX design, I bridge the gap between design concepts and scalable, robust production code.",
-    "My core focus revolves around crafting clean layouts and highly interactive web systems using React.js, Tailwind CSS, SASS, and JavaScript. Currently, I am expanding my development toolkit by diving deep into Next.js, Ruby on Rails, and Hotwire (Turbo/Stimulus) to build reactive, server-rendered applications.",
-    "Driven by a strong interest in remote engineering job opportunities, I plan to collaborate with teams in Australia (AU) and Singapore (SG), with the long-term goal of pursuing a career abroad. When I’m not writing code or designing user interfaces, I usually work on improving my skills by learning new programming languages or studying foreign languages."
-  ],
+  badgeText: "OPEN TO REMOTE WORK",
+  heroBio: "Frontend focused developer currently working remotely with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
+  cvUrl: "/assets/CV_Fikri_Bintang_Achmada_CV.pdf",
   socials: {
-    linkedin: "https://linkedin.com/in/fikriachmada",
     github: "https://github.com/Feek18",
-    dribbble: "https://dribbble.com/Fikribintang"
-  }
+    linkedin: "https://linkedin.com/in/fikriachmada",
+    dribbble: "https://dribbble.com/Fikribintang",
+  },
 };
 
-export const skillsData: SkillCategory[] = [
+export const aboutParagraphs = [
+  "I'm a Software Engineering graduate from Politeknik Negeri Bali (GPA 3.76/4.00). I started with design and UI/UX in Figma before moving into frontend code — HTML, SASS, React.js, Next.js, Tailwind CSS, and React Native.",
+  "Right now I work full-time as a Fullstack Developer at PT. SUM Digital Konsultan, building a drone-tracking platform with Ruby on Rails and Hotwire, while actively searching for frontend roles on the job.",
+  "Outside work I plan to focus on remote projects and continue learning German.",
+];
+
+export const aboutStats: AboutStats = {
+  education: "Politeknik Negeri Bali - GPA 3.76 / 4.00",
+  location: "Denpasar, Bali, Indonesia",
+  focus: "Frontend & UI Design",
+};
+
+export const techStackData: TechStackCategory[] = [
   {
-    title: "Frontend & Core",
-    skills: ["HTML", "CSS/SASS", "Tailwind CSS", "JavaScript", "React.js", "Next.js", "TypeScript"]
+    title: "Frontend",
+    skills: ["HTML", "CSS/SASS", "JavaScript", "React.js", "Next.js", "TypeScript", "Tailwind CSS"],
   },
   {
-    title: "Design Tools & Methods",
-    skills: ["Figma", "Wireframing", "Prototyping", "Responsive UI/UX Design", "Design Systems"]
+    title: "Backend Development/Router",
+    skills: ["Ruby on Rails", "Hotwire (Turbo + Stimulus)", "MySQL"],
   },
   {
-    title: "Currently Learning",
-    skills: ["Ruby on Rails", "Hotwire (Turbo + Stimulus)", "Backend Basics"]
-  }
+    title: "Design",
+    skills: ["Figma", "Wireframing", "Prototyping", "Design systems"],
+  },
 ];
 
 export const projectsData: Project[] = [
   {
     id: "room-production",
+    subLabel: "2024",
     title: "Room Production",
-    tagline: "Garment brand identity website featuring complex catalog transitions.",
-    description: "An elegant, highly aesthetic web app designed for Room Production (previously Youniform) during their company rebranding phase.",
-    context: "Needed a clean, minimal showcase app to communicate their new identity, premium clothing textures, and garment catalogs to international B2B clients.",
-    role: "Handled full frontend development, translated design tokens, maintained pixel-perfect brand consistency during the structural rebrand, and created fluid catalog scroll animations.",
+    description: "Website showcase for a garment brand (Formerly Youniform) featuring catalog presentation, clean layout, and Framer Motion animation. Built to showcase catalog showcase & custom product lines for international clients.",
     stack: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    results: [
-      "Successfully launched the rebranded platform with a Lighthouse performance score of 98/100.",
-      "Added responsive image layouts and fluid layout transitions that keep visitors engaged.",
-      "Delivered a robust codebase compliant with Vercel edge deployment constraints."
-    ],
+    rightColType: "metric",
+    metricLabel: "METRIC",
+    metricValue: "98/100",
+    metricSubtext: "Lighthouse Performance score",
     liveUrl: "https://room-production-app.vercel.app",
-    githubUrl: "https://github.com/Feek18"
+    githubUrl: "https://github.com/Feek18",
   },
   {
-    id: "coder",
-    title: "Coder Landing Page",
-    tagline: "A responsive educational profile landing page for developer training programs.",
-    description: "A clean, highly responsive web interface built to introduce coding classes and developer programs.",
-    context: "Developed as a graduation project from a web development training class to showcase class curriculums and programming services.",
-    role: "Sole developer handling both layout prototyping in Figma and responsive frontend coding.",
-    stack: ["HTML", "CSS", "Tailwind CSS", "AOS (Animate on Scroll)"],
-    results: [
-      "Built a clean, mobile-first responsive layout with custom mobile navigation drawers.",
-      "Integrated AOS scroll animations to guide users through class curriculums.",
-      "Delivered a lightweight page with excellent cross-device loading speeds."
-    ],
-    githubUrl: "https://github.com/Feek18/Coder"
+    id: "akasa-skylens",
+    subLabel: "PT. SUM DIGITAL KONSULTAN",
+    title: "Akasa SkyLens (runway.cx)",
+    description: "Akasa SkyLens is an intermediate platform for drone operators and users with admin features and operator verification. My contributions: Multi-step checkout with email OTP verification, Stimulus-based toast notification system, dark/light theme selection and QR code verification module.",
+    stack: ["Ruby on Rails", "Hotwire (Turbo + Stimulus)", "PostgreSQL"],
+    rightColType: "confidential",
+    rightColText: "Production inspection & client access code was restricted/confidential.",
+    isPrivate: true,
   },
   {
-    id: "project-laravel11",
-    title: "Classroom Booking & Scheduling System",
-    tagline: "A secure scheduling and classroom booking system utilizing QR verification.",
-    description: "A comprehensive digital scheduling and booking management system built to automate classroom reservations, schedule courses (mata kuliah), and manage permissions.",
-    context: "Built to solve scheduling conflicts and streamline classroom reservations in educational facilities, replacing manual paper scheduling.",
-    role: "Full-stack developer implementing the reservation database schema, role-based access control, and QR-code check-in generation.",
-    stack: ["Laravel 11", "PHP", "Tailwind CSS", "MySQL", "QR Code Engine"],
-    results: [
-      "Implemented a database schema for Classrooms (Ruangan), Courses (Mata Kuliah), and Bookings (Peminjaman).",
-      "Created dynamic QR Code generators and verifiers to authenticate classroom keys on-site.",
-      "Built role-based dashboards (Admin, Lecturer, Student) using Laravel gates and permissions."
-    ],
-    githubUrl: "https://github.com/Feek18/project-laravel11"
+    id: "campus-reservation",
+    subLabel: "POLITEKNIK NEGERI BALI — 2024",
+    title: "Campus Space Reservation System",
+    description: "A academic paper/project showcase on room booking and scheduling system with QR-Code verify, built with Laravel 11. My role: Front-end Database architecture, Role-based Access Control, QR Code generator and verification.",
+    stack: ["Laravel 11", "PHP", "MySQL", "Tailwind CSS"],
+    rightColType: "academic",
+    rightColText: "Academic project, non live site.",
+    githubUrl: "https://github.com/Feek18/project-laravel11",
   },
   {
-    id: "mini-project",
-    title: "Laravel Social Media Platform",
-    tagline: "A responsive microblogging web application with social feeds and user connections.",
-    description: "A lightweight social microblogging web application featuring full posting functionality, commenting, likes, favorites, and user follower relationships.",
-    context: "Exploratory project mapping out Laravel relations (one-to-many, many-to-many polymorphic relationships) for complex social interactions.",
-    role: "Full-stack developer designing the database migrations, posting engines, like/favorite triggers, and responsive UI feeds.",
-    stack: ["Laravel", "PHP", "Tailwind CSS", "MySQL", "Blade Templates"],
-    results: [
-      "Designed a robust relational database schema to support follower connections, replies, favorites, and post likes.",
-      "Built reactive post and comment feeds with likes and comment replies.",
-      "Implemented personal profile pages showcasing user activities and follower counts."
-    ],
-    githubUrl: "https://github.com/Feek18/mini-project"
-  }
+    id: "social-media-clone",
+    subLabel: "MINI PROJECT / 2024",
+    title: "Laravel Social Media Clone",
+    description: "Microblogging application featuring user relationships, posts, comments, likes, & followers. My role: Relational database architecture design and user presentation feeds.",
+    stack: ["Laravel 11", "PHP", "MySQL", "Blade"],
+    rightColType: "exploratory",
+    rightColText: "Personal exploratory codebase for microblog navigation and relationship modelling.",
+    githubUrl: "https://github.com/Feek18/mini-project",
+  },
 ];
 
 export const experienceData: Experience[] = [
   {
-    role: "Fullstack Developer",
+    role: "Full stack Developer",
     company: "PT. SUM Digital Konsultan",
-    duration: "Nov 2025 - Present",
-    description: "• Contribute to Akasa SkyLens, a drone booking and cinematography platform, working across admin-facing features and verification on operator side.\n• Gaining hands-on professional experience with Ruby on Rails and Hotwire (Turbo Streams + Stimulus) on the job — building on a frontend foundation to take on full-stack tasks.\n• Helped implement a multi-step checkout flow with email-based OTP verification and a customer identity/session system.\n• Built UI features including a Stimulus-based toast notification system, dark/light theme switching with Tailwind CSS, and an operator-facing QR code verification flow."
+    duration: "Nov 2024 - Present",
+    bullets: [
+      "Contribute to Akasa SkyLens, a drone booking and cinematography platform, working on admin-facing features and verification on operator side.",
+      "Gaining hands-on professional experience with Ruby on Rails and Hotwire (Turbo Streams + Stimulus) on the job — building on a frontend foundation to take on full-stack tasks.",
+      "Helped implement a multi-step checkout flow with email-based OTP verification and a customer identity/session system.",
+      "Built UI features including a Stimulus-based toast notification system, dark/light theme switching with Tailwind CSS, and an operator-facing QR code verification flow.",
+    ],
+    skills: ["Ruby on Rails", "Hotwire (Turbo + Stimulus)", "PostgreSQL"],
   },
   {
     role: "Frontend Web Developer Intern",
-    company: "PT. Appkey",
+    company: "PT. APPKEY",
     duration: "Aug 2024",
-    description: "• Participated in developing a real website project with the team.\n• Fixed several bugs and added features according to the client’s wishes.\n• Held meetings with the team to achieve common goals.\n• Optimize CSS and image assets, reducing loading time on the main page.\n• Collaborate with the QA team to add test data and optimize map display with Leaflet JS."
-  }
+    bullets: [
+      "Participated in developing a real website project with the team.",
+      "Fixed several bugs and added features according to the client's wishes.",
+      "With meetings with the team to address common goals.",
+      "Optimized CSS and image assets, reducing loading time on the main page.",
+      "Collaborate with the QA team to add test data and optimize map displaying with Leaflet JS.",
+    ],
+    skills: ["JavaScript", "CSS Optimization", "Leaflet JS", "QA Documentation"],
+  },
 ];

@@ -1,178 +1,155 @@
 "use client";
 
 import React, { useState } from "react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { personalInfo } from "@/lib/data";
-import { Mail, Send, CheckCircle2, AlertCircle } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 
-export function Contact() {
+export interface ContactProps {
+  className?: string;
+}
+
+export function Contact({ className = "" }: ContactProps) {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("submitting");
-
-    try {
-      // Simulate form submission delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setStatus("success");
-      setFormState({ name: "", email: "", message: "" });
-    } catch {
-      setStatus("error");
-    }
+    // Mailto fallback & feedback state trigger
+    const subject = encodeURIComponent(`Portfolio Contact from ${formState.name}`);
+    const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`);
+    window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
+    setSubmitted(true);
   };
 
-  const socialLinks = [
-    {
-      name: "Email",
-      value: personalInfo.email,
-      href: `mailto:${personalInfo.email}`,
-      icon: Mail,
-    },
-    {
-      name: "LinkedIn",
-      value: "linkedin.com/in/fikriachmada",
-      href: personalInfo.socials.linkedin,
-      icon: LinkedinIcon,
-    },
-    {
-      name: "GitHub",
-      value: "github.com/Feek18",
-      href: personalInfo.socials.github,
-      icon: GithubIcon,
-    },
-  ];
-
   return (
-    <section id="contact" className="py-24 border-t border-border/40 bg-card/30">
-      <div className="max-w-6xl mx-auto px-6">
-        <AnimatedSection className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Direct channels and copy */}
-          <div className="md:col-span-5 space-y-6">
-            <div className="space-y-2">
-              <span className="text-xs font-bold text-primary uppercase tracking-widest">Get In Touch</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold tracking-tight">Let&apos;s Work Together</h2>
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Open to remote, contract, &amp; full-time opportunities. Drop me a line, and let&apos;s discuss how I can contribute to your team.
-              </p>
+    <AnimatedSection id="contact" className={`py-20 border-t border-outline-variant/30 ${className}`}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
+        {/* Header */}
+        <div className="space-y-2">
+          <span className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block">
+            05 // CONTACT
+          </span>
+          <h2 className="font-display font-bold text-headline-lg text-on-surface max-w-2xl">
+            Interested in working together or have a question? Reach out.
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Direct Info Box & Links */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="p-6 rounded-xl border border-outline-variant/40 bg-white space-y-2">
+              <span className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block">
+                EMAIL
+              </span>
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="font-sans font-bold text-sm sm:text-base text-on-surface hover:text-primary transition-colors break-all"
+              >
+                {personalInfo.email}
+              </a>
             </div>
 
-            <div className="space-y-4 pt-4">
-              {socialLinks.map((link, idx) => {
-                const Icon = link.icon;
-                return (
-                  <a
-                    key={idx}
-                    href={link.href}
-                    target={link.name !== "Email" ? "_blank" : undefined}
-                    rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
-                    className="flex items-center space-x-4 p-4 rounded-xl border border-border bg-card shadow-sm hover:border-primary/20 hover:bg-secondary/40 transition-all duration-300 group focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary transition-transform group-hover:scale-105">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">{link.name}</h3>
-                      <p className="text-sm font-bold text-foreground break-all">{link.value}</p>
-                    </div>
-                  </a>
-                );
-              })}
+            <div className="grid grid-cols-2 gap-4">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="p-4 rounded-xl border border-outline-variant/40 bg-white hover:border-primary transition-colors flex items-center justify-between font-sans text-xs font-semibold text-on-surface"
+              >
+                <span>Contact Form</span>
+                <ArrowUpRight className="w-4 h-4 text-on-surface-variant" />
+              </a>
+
+              <a
+                href={personalInfo.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-xl border border-outline-variant/40 bg-white hover:border-primary transition-colors flex items-center justify-between font-sans text-xs font-semibold text-on-surface"
+              >
+                <span>GitHub</span>
+                <ArrowUpRight className="w-4 h-4 text-on-surface-variant" />
+              </a>
             </div>
           </div>
 
-          {/* Right Column: Interactive Form */}
-          <div className="md:col-span-7 p-8 rounded-2xl border border-border bg-card shadow-sm">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-bold text-foreground">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formState.name}
-                  onChange={handleChange}
-                  placeholder="John Doe"
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                />
+          {/* Right Column: Contact Form */}
+          <div className="lg:col-span-7 p-6 sm:p-8 rounded-xl border border-outline-variant/40 bg-white space-y-6">
+            <h3 className="font-display font-bold text-lg text-on-surface">
+              Send a Message
+            </h3>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label htmlFor="name" className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block">
+                    NAME
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formState.name}
+                    onChange={handleChange}
+                    placeholder="Your name"
+                    className="w-full px-4 py-2.5 rounded-md border border-outline-variant/40 bg-surface-container-low font-sans text-sm text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label htmlFor="email" className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block">
+                    EMAIL
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formState.email}
+                    onChange={handleChange}
+                    placeholder="Your email address"
+                    className="w-full px-4 py-2.5 rounded-md border border-outline-variant/40 bg-surface-container-low font-sans text-sm text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                  />
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-bold text-foreground">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formState.email}
-                  onChange={handleChange}
-                  placeholder="johndoe@example.com"
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-bold text-foreground">
-                  Message
+              <div className="space-y-1.5">
+                <label htmlFor="message" className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block">
+                  MESSAGE
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
-                  rows={5}
+                  rows={4}
                   value={formState.message}
                   onChange={handleChange}
-                  placeholder="Hi Fikri, I would love to talk about a frontend project..."
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none"
+                  placeholder="Your message..."
+                  className="w-full px-4 py-2.5 rounded-md border border-outline-variant/40 bg-surface-container-low font-sans text-sm text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={status === "submitting"}
-                className="w-full inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-lg bg-primary hover:bg-primary/95 disabled:bg-primary/70 text-primary-foreground font-bold transition-all shadow-md focus:ring-2 focus:ring-primary"
+                className="w-full inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-md bg-primary hover:bg-primary-container text-white font-semibold text-sm transition-colors shadow-xs"
               >
-                {status === "submitting" ? (
-                  <>
-                    <span className="w-4 h-4 rounded-full border-2 border-primary-foreground border-t-transparent animate-spin" />
-                    <span>Sending Message...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-4 h-4" />
-                    <span>Send Message</span>
-                  </>
-                )}
+                <span>Send Message</span>
+                <ArrowUpRight className="w-4 h-4" />
               </button>
 
-              {status === "success" && (
-                <div className="flex items-center space-x-2 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-sm font-medium animate-fade-in">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                  <span>Thank you! Your message has been sent successfully.</span>
-                </div>
-              )}
-
-              {status === "error" && (
-                <div className="flex items-center space-x-2 p-4 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-sm font-medium animate-fade-in">
-                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                  <span>Something went wrong. Please try emailing directly.</span>
+              {submitted && (
+                <div className="flex items-center space-x-2 p-3 rounded-md bg-primary/10 border border-primary/20 text-primary font-sans text-xs font-medium">
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                  <span>Opening your mail client... Thanks for reaching out!</span>
                 </div>
               )}
             </form>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

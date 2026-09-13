@@ -1,91 +1,112 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
-export function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+export interface HeaderProps {
+  className?: string;
+}
+
+export function Header({ className = "" }: HeaderProps) {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
+  const navItems = [
+    { label: "About", href: "#about" },
+    { label: "Tech Stack", href: "#tech-stack" },
+    { label: "Selected Work", href: "#selected-work" },
+    { label: "Chronology", href: "#chronology" },
   ];
-
-  // Abbreviated logo name: "Fikri B." or initials
-  const logoText = "FeekPORT";
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-350 ${scrolled
-          ? "border-b border-border/40 bg-background/70 backdrop-blur-md py-4"
-          : "bg-transparent py-6"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-surface/90 backdrop-blur-md border-b ${
+        isScrolled ? "border-outline-variant/40 shadow-sm py-3" : "border-outline-variant/20 py-4"
+      } ${className}`}
     >
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo/Name */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+        {/* Logo */}
         <a
           href="#"
-          className="font-heading font-bold text-lg tracking-tight hover:text-primary transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-1"
+          className="font-display font-extrabold text-xl tracking-tight text-on-surface hover:text-primary transition-colors"
         >
-          {logoText}<span className="text-primary">.</span>
+          Feek
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
+        {/* Center Nav Links - Desktop */}
+        <nav className="hidden md:flex items-center space-x-8" aria-label="Main Navigation">
+          {navItems.map((item) => (
             <a
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-1"
+              key={item.label}
+              href={item.href}
+              className="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors"
             >
-              {link.name}
+              {item.label}
             </a>
           ))}
-          <ThemeToggle />
         </nav>
 
-        {/* Mobile controls */}
-        <div className="flex items-center space-x-4 md:hidden">
-          <ThemeToggle />
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-1 text-muted-foreground hover:text-foreground transition-colors focus:ring-2 focus:ring-primary rounded"
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
+        {/* Right Status Badge & Contact Action */}
+        <div className="hidden sm:flex items-center space-x-4">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/40 text-xs font-mono font-medium text-on-surface-variant">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <span>Open to work</span>
+          </div>
+
+          <a
+            href="#contact"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-md bg-primary hover:bg-primary-container text-white text-xs font-semibold tracking-wide transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <span>Contact me</span>
+          </a>
+        </div>
+
+        {/* Mobile Hamburger Toggle */}
+        <div className="flex sm:hidden items-center space-x-3">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Navigation Menu"
+            className="p-2 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low focus:outline-none"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation Dropdown */}
-      {isOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 border-b border-border bg-background/95 backdrop-blur-lg py-6 px-6 shadow-lg">
-          <nav className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2 focus:ring-2 focus:ring-primary rounded px-1"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="sm:hidden border-b border-outline-variant/30 bg-surface px-6 py-4 space-y-3">
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-base font-medium text-on-surface-variant hover:text-primary py-1"
+            >
+              {item.label}
+            </a>
+          ))}
+          <div className="pt-3 border-t border-outline-variant/20 flex flex-col space-y-3">
+            <div className="inline-flex items-center space-x-2 text-xs font-mono text-on-surface-variant">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              <span>Open to work</span>
+            </div>
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-center py-2.5 rounded-md bg-primary text-white text-xs font-semibold"
+            >
+              Contact me
+            </a>
+          </div>
         </div>
       )}
     </header>

@@ -1,24 +1,23 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta-sans",
+  display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -42,13 +41,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://room-production-app.vercel.app",
     title: "Fikri Bintang Achmada | Frontend Developer & UI/UX Designer",
-    description: "I turn designs into fast, responsive interfaces — from Figma prototypes to production code.",
+    description: "Frontend focused developer currently working remotely with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
     siteName: "Fikri Bintang Achmada Portfolio",
   },
   twitter: {
     card: "summary_large_image",
     title: "Fikri Bintang Achmada | Frontend Developer & UI/UX Designer",
-    description: "I turn designs into fast, responsive interfaces — from Figma prototypes to production code.",
+    description: "Frontend focused developer currently working remotely with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
   },
   icons: {
     icon: "/icon.png",
@@ -64,12 +63,12 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} font-sans antialiased`}
+        className={`${plusJakartaSans.variable} ${inter.variable} ${jetbrainsMono.variable} font-sans bg-surface text-on-surface antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

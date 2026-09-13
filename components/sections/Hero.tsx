@@ -1,95 +1,88 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import React from "react";
+import Image from "next/image";
+import { ArrowUpRight, Download, Mail } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 
-export function Hero() {
+export interface HeroProps {
+  className?: string;
+}
+
+export function Hero({ className = "" }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden"
+      className={`pt-32 pb-20 md:pt-40 md:pb-28 max-w-7xl mx-auto px-6 sm:px-8 ${className}`}
     >
-      {/* Subtle background glow */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center opacity-40 dark:opacity-20 pointer-events-none">
-        <div className="w-[450px] h-[450px] rounded-full bg-primary/10 blur-[100px] animate-pulse" style={{ animationDuration: "10s" }} />
-      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        {/* Left Column: Text & CTAs */}
+        <div className="lg:col-span-8 space-y-6">
+          {/* Status Badge */}
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-surface-container-low border border-outline-variant/40">
+            <span className="w-2 h-2 rounded-full bg-primary" />
+            <span className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em]">
+              {personalInfo.badgeText}
+            </span>
+          </div>
 
-      <div className="max-w-4xl mx-auto px-6 text-center select-none">
-        {/* Remote badge */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-xs font-semibold text-primary tracking-wide mb-8"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </span>
-          <span>{personalInfo.badgeText}</span>
-        </motion.div>
+          {/* Name & Role */}
+          <div className="space-y-2">
+            <h1 className="font-display font-bold text-display-xl-mobile sm:text-display-xl text-on-surface tracking-tight">
+              {personalInfo.name}
+            </h1>
+            <p className="font-display font-bold text-headline-lg text-primary">
+              {personalInfo.title}
+            </p>
+          </div>
 
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-6xl md:text-7xl font-heading font-extrabold tracking-tight mb-5 text-gradient"
-        >
-          {personalInfo.name}
-        </motion.h1>
+          {/* Short Bio */}
+          <p className="font-sans text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            {personalInfo.heroBio}
+          </p>
 
-        {/* Role */}
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg sm:text-2xl font-medium text-muted-foreground mb-8 tracking-wide font-heading"
-        >
-          {personalInfo.title}
-        </motion.h2>
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center gap-4 pt-4">
+            <a
+              href="#selected-work"
+              className="inline-flex items-center space-x-2 px-5 py-3 rounded-md bg-primary hover:bg-primary-container text-white text-sm font-semibold transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
+              <span>View Projects</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
 
-        {/* Value Proposition */}
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="text-base sm:text-xl text-muted-foreground/80 max-w-2xl mx-auto mb-12 leading-relaxed"
-        >
-          {personalInfo.valueProp}
-        </motion.p>
+            <a
+              href={personalInfo.cvUrl}
+              download
+              className="inline-flex items-center space-x-2 px-5 py-3 rounded-md bg-surface-container-low hover:bg-outline-variant/20 border border-outline-variant/60 text-on-surface text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
+              <Download className="w-4 h-4 text-on-surface-variant" />
+              <span>Download CV</span>
+            </a>
 
-        {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5"
-        >
-          <a
-            href="#projects"
-            className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-lg bg-primary hover:bg-primary/95 text-primary-foreground font-semibold transition-all shadow-md shadow-primary/10 group focus:ring-2 focus:ring-primary focus:ring-offset-2"
-          >
-            <span>View My Work</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </a>
-          <a
-            href={personalInfo.cvUrl}
-            download
-            className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-lg border border-border bg-card hover:bg-secondary text-foreground font-semibold transition-all group focus:ring-2 focus:ring-primary focus:ring-offset-2"
-          >
-            <Download className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-            <span>Download CV</span>
-          </a>
-          <a
-            href="#contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-lg border border-transparent hover:border-border text-muted-foreground hover:text-foreground font-semibold transition-all focus:ring-2 focus:ring-primary focus:ring-offset-2"
-          >
-            <Mail className="w-4 h-4" />
-            <span>Contact Me</span>
-          </a>
-        </motion.div>
+            <a
+              href="#contact"
+              className="inline-flex items-center space-x-2 px-5 py-3 rounded-md border border-outline-variant/60 hover:border-primary text-on-surface-variant hover:text-primary text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
+              <Mail className="w-4 h-4" />
+              <span>Contact Me</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Right Column: Next/Image Duotone Portrait */}
+        <div className="lg:col-span-4 flex justify-center lg:justify-end">
+          <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-xl overflow-hidden shadow-md border border-outline-variant/40 bg-surface-container-low group">
+            <Image
+              src="/assets/hero-portrait.jpg"
+              alt={`Portrait photo of ${personalInfo.name}`}
+              priority
+              fill
+              sizes="(max-width: 768px) 100vw, 340px"
+              className="object-cover grayscale contrast-110 group-hover:scale-105 transition-transform duration-500 ease-out"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

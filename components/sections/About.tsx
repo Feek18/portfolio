@@ -1,80 +1,68 @@
+"use client";
+
+import React from "react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { personalInfo } from "@/lib/data";
-import { MapPin, GraduationCap, Target, Languages } from "lucide-react";
+import { aboutParagraphs, aboutStats } from "@/lib/data";
 
-export function About() {
-  const quickFacts = [
-    {
-      icon: GraduationCap,
-      label: "Education",
-      value: "Software Engineering, PNB",
-      subValue: "GPA 3.76 / 4.00"
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Denpasar, Bali",
-      subValue: "Indonesia (GMT+8)"
-    },
-    {
-      icon: Target,
-      label: "Focus & Aspiration",
-      value: "Remote (AU/SG) Roles",
-      subValue: "Long-term target: Japan"
-    },
-    {
-      icon: Languages,
-      label: "Languages",
-      value: "Learning Foreign Languages",
-      subValue: "Japanese & Korea"
-    }
-  ];
+export interface AboutProps {
+  className?: string;
+}
 
+export function About({ className = "" }: AboutProps) {
   return (
-    <section id="about" className="py-24 border-t border-border/40 bg-card/30">
-      <div className="max-w-6xl mx-auto px-6">
-        <AnimatedSection className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Heading & Paragraphs */}
-          <div className="md:col-span-7 space-y-6">
-            <div className="space-y-2">
-              <span className="text-xs font-bold text-primary uppercase tracking-widest">Introduction</span>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold tracking-tight">About Me</h2>
-            </div>
+    <AnimatedSection id="about" className={`py-20 border-t border-outline-variant/30 ${className}`}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          {/* Left Header Column */}
+          <div className="lg:col-span-4 space-y-2">
+            <span className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block">
+              01 // BIOGRAPHY & STATS
+            </span>
+            <h2 className="font-display font-bold text-headline-lg text-on-surface">
+              About
+            </h2>
+          </div>
 
-            <div className="space-y-6 text-muted-foreground/90 leading-relaxed text-base sm:text-lg">
-              {personalInfo.aboutText.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+          {/* Right Content Column */}
+          <div className="lg:col-span-8 space-y-8">
+            <div className="space-y-4 font-sans text-body-lg text-on-surface-variant leading-relaxed">
+              {aboutParagraphs.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
               ))}
             </div>
-          </div>
 
-          {/* Right Column: Profile details grid */}
-          <div className="md:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 md:pt-0">
-            {quickFacts.map((fact, index) => {
-              const Icon = fact.icon;
-              return (
-                <div
-                  key={index}
-                  className="p-5 rounded-xl border border-border bg-card shadow-sm hover:border-primary/30 transition-all duration-300"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center text-primary mb-4">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1">
-                    {fact.label}
-                  </h3>
-                  <p className="text-sm font-bold text-foreground mb-0.5 leading-snug">
-                    {fact.value}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {fact.subValue}
-                  </p>
-                </div>
-              );
-            })}
+            {/* Stats / Info Metadata */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-outline-variant/30">
+              <div>
+                <span className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block mb-1">
+                  EDUCATION
+                </span>
+                <p className="font-sans text-sm font-semibold text-on-surface">
+                  {aboutStats.education}
+                </p>
+              </div>
+
+              <div>
+                <span className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block mb-1">
+                  LOCATION
+                </span>
+                <p className="font-sans text-sm font-semibold text-on-surface">
+                  {aboutStats.location}
+                </p>
+              </div>
+
+              <div>
+                <span className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block mb-1">
+                  FOCUS
+                </span>
+                <p className="font-sans text-sm font-semibold text-on-surface">
+                  {aboutStats.focus}
+                </p>
+              </div>
+            </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

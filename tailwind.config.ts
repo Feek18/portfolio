@@ -10,15 +10,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        surface: "#f9f9f8",
+        "surface-container-low": "#f3f4f3",
+        "on-surface": "#1a1c1c",
+        "on-surface-variant": "#404941",
+        "outline-variant": "#bfc9bf",
+        primary: {
+          DEFAULT: "#004225",
+          foreground: "#ffffff",
+          container: "#0a5c36",
+        },
+        "primary-container": "#0a5c36",
+        "on-primary-container": "#89d2a2",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -50,9 +58,17 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
+        display: ["var(--font-plus-jakarta-sans)", "sans-serif"],
+        heading: ["var(--font-plus-jakarta-sans)", "sans-serif"],
         sans: ["var(--font-inter)", "sans-serif"],
-        heading: ["var(--font-geist-sans)", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        mono: ["var(--font-jetbrains-mono)", "monospace"],
+      },
+      fontSize: {
+        "display-xl": ["3.5rem", { lineHeight: "1.15", fontWeight: "700" }],
+        "display-xl-mobile": ["2.25rem", { lineHeight: "1.2", fontWeight: "700" }],
+        "headline-lg": ["2rem", { lineHeight: "1.25", fontWeight: "700" }],
+        "body-lg": ["1.125rem", { lineHeight: "1.6", fontWeight: "400" }],
+        "label-caps": ["0.6875rem", { lineHeight: "1", letterSpacing: "0.08em", fontWeight: "600" }],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",
