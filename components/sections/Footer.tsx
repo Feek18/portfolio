@@ -16,7 +16,7 @@ export function Footer({ className = "" }: FooterProps) {
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
           <span className="font-bold text-on-surface">{personalInfo.name}</span>
           <span className="hidden sm:inline text-outline-variant">•</span>
-          <span>{personalInfo.location} {personalInfo.postalCode} · {personalInfo.timezone}</span>
+          <span>{personalInfo.location} · {personalInfo.timezone}</span>
         </div>
 
         {/* Right Side Links */}

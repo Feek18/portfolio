@@ -31,23 +31,22 @@ export const metadata: Metadata = {
     "Bali Web Developer",
     "React Developer",
     "Next.js Developer",
-    "Politeknik Negeri Bali",
-    "Remote Developer AU SG"
+    "Politeknik Negeri Bali"
   ],
   authors: [{ name: "Fikri Bintang Achmada", url: "https://linkedin.com/in/fikriachmada" }],
   creator: "Fikri Bintang Achmada",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://room-production-app.vercel.app",
+    url: "https://feekport.vercel.app",
     title: "Fikri Bintang Achmada | Frontend Developer & UI/UX Designer",
-    description: "Frontend focused developer currently working remotely with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
+    description: "Frontend focused developer currently working fullstack with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
     siteName: "Fikri Bintang Achmada Portfolio",
   },
   twitter: {
     card: "summary_large_image",
     title: "Fikri Bintang Achmada | Frontend Developer & UI/UX Designer",
-    description: "Frontend focused developer currently working remotely with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
+    description: "Frontend focused developer currently working fullstack with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
   },
   icons: {
     icon: "/icon.png",

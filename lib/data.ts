@@ -58,7 +58,7 @@ export const personalInfo: PersonalInfo = {
   timezone: "UTC+8",
   email: "bintangfikri31@gmail.com",
   badgeText: "OPEN TO REMOTE WORK",
-  heroBio: "Frontend focused developer currently working remotely with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
+  heroBio: "Frontend focused developer currently working fullstack with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
   cvUrl: "/assets/CV_Fikri_Bintang_Achmada_CV.pdf",
   socials: {
     github: "https://github.com/Feek18",
@@ -69,8 +69,7 @@ export const personalInfo: PersonalInfo = {
 
 export const aboutParagraphs = [
   "I'm a Software Engineering graduate from Politeknik Negeri Bali (GPA 3.76/4.00). I started with design and UI/UX in Figma before moving into frontend code — HTML, SASS, React.js, Next.js, Tailwind CSS, and React Native.",
-  "Right now I work full-time as a Fullstack Developer at PT. SUM Digital Konsultan, building a drone-tracking platform with Ruby on Rails and Hotwire, while actively searching for frontend roles on the job.",
-  "Outside work I plan to focus on remote projects and continue learning German.",
+  "Right now I work full-time as a Fullstack Developer at PT. SUM Digital Konsultan, building a drone-tracking platform with Ruby on Rails and Hotwire. Outside work I take on freelance frontend projects and I'm slowly learning German.",
 ];
 
 export const aboutStats: AboutStats = {
@@ -111,18 +110,18 @@ export const projectsData: Project[] = [
   {
     id: "akasa-skylens",
     subLabel: "PT. SUM DIGITAL KONSULTAN",
-    title: "Akasa SkyLens (runway.cx)",
+    title: "Akasa SkyLens",
     description: "Akasa SkyLens is an intermediate platform for drone operators and users with admin features and operator verification. My contributions: Multi-step checkout with email OTP verification, Stimulus-based toast notification system, dark/light theme selection and QR code verification module.",
-    stack: ["Ruby on Rails", "Hotwire (Turbo + Stimulus)", "PostgreSQL"],
+    stack: ["Ruby on Rails", "Hotwire (Turbo + Stimulus)", "MySQL"],
     rightColType: "confidential",
-    rightColText: "Production inspection & client access code was restricted/confidential.",
+    rightColText: "Production project for a client — code and detailed metrics are confidential.",
     isPrivate: true,
   },
   {
     id: "campus-reservation",
     subLabel: "POLITEKNIK NEGERI BALI — 2024",
     title: "Campus Space Reservation System",
-    description: "A academic paper/project showcase on room booking and scheduling system with QR-Code verify, built with Laravel 11. My role: Front-end Database architecture, Role-based Access Control, QR Code generator and verification.",
+    description: "An academic capstone project on room booking and scheduling system with QR-Code verify, built with Laravel 11. My role: Full-stack — designed the database schema, built role-based dashboards (Admin/Lecturer/Student), and implemented QR code generation and verification.",
     stack: ["Laravel 11", "PHP", "MySQL", "Tailwind CSS"],
     rightColType: "academic",
     rightColText: "Academic project, non live site.",
@@ -135,7 +134,7 @@ export const projectsData: Project[] = [
     description: "Microblogging application featuring user relationships, posts, comments, likes, & followers. My role: Relational database architecture design and user presentation feeds.",
     stack: ["Laravel 11", "PHP", "MySQL", "Blade"],
     rightColType: "exploratory",
-    rightColText: "Personal exploratory codebase for microblog navigation and relationship modelling.",
+    rightColText: "Personal practice project — not in active use.",
     githubUrl: "https://github.com/Feek18/mini-project",
   },
 ];
@@ -144,14 +143,14 @@ export const experienceData: Experience[] = [
   {
     role: "Full stack Developer",
     company: "PT. SUM Digital Konsultan",
-    duration: "Nov 2024 - Present",
+    duration: "Nov 2025 – Present",
     bullets: [
       "Contribute to Akasa SkyLens, a drone booking and cinematography platform, working on admin-facing features and verification on operator side.",
       "Gaining hands-on professional experience with Ruby on Rails and Hotwire (Turbo Streams + Stimulus) on the job — building on a frontend foundation to take on full-stack tasks.",
       "Helped implement a multi-step checkout flow with email-based OTP verification and a customer identity/session system.",
       "Built UI features including a Stimulus-based toast notification system, dark/light theme switching with Tailwind CSS, and an operator-facing QR code verification flow.",
     ],
-    skills: ["Ruby on Rails", "Hotwire (Turbo + Stimulus)", "PostgreSQL"],
+    skills: ["Ruby on Rails", "Hotwire (Turbo + Stimulus)", "MySQL"],
   },
   {
     role: "Frontend Web Developer Intern",
@@ -160,7 +159,7 @@ export const experienceData: Experience[] = [
     bullets: [
       "Participated in developing a real website project with the team.",
       "Fixed several bugs and added features according to the client's wishes.",
-      "With meetings with the team to address common goals.",
+      "Held meetings with the team to align on shared goals.",
       "Optimized CSS and image assets, reducing loading time on the main page.",
       "Collaborate with the QA team to add test data and optimize map displaying with Leaflet JS.",
     ],

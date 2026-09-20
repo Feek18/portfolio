@@ -60,7 +60,7 @@ export function ProjectCard({ project, className = "" }: ProjectCardProps) {
           {project.rightColType === "confidential" && (
             <div className="space-y-3">
               <span className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block">
-                CLIENT ACT
+                PROJECT NOTE
               </span>
               <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
                 {project.rightColText}
@@ -75,7 +75,7 @@ export function ProjectCard({ project, className = "" }: ProjectCardProps) {
           {project.rightColType === "academic" && (
             <div className="space-y-2">
               <span className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block">
-                PROJECT ROLE
+                PROJECT NOTE
               </span>
               <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
                 {project.rightColText}
@@ -86,7 +86,7 @@ export function ProjectCard({ project, className = "" }: ProjectCardProps) {
           {project.rightColType === "exploratory" && (
             <div className="space-y-2">
               <span className="font-mono text-label-caps text-on-surface-variant uppercase tracking-[0.08em] block">
-                CLIENT ACT
+                PROJECT NOTE
               </span>
               <p className="font-sans text-xs text-on-surface-variant leading-relaxed">
                 {project.rightColText}
