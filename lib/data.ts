@@ -84,7 +84,7 @@ export const techStackData: TechStackCategory[] = [
     skills: ["HTML", "CSS/SASS", "JavaScript", "React.js", "Next.js", "TypeScript", "Tailwind CSS"],
   },
   {
-    title: "Backend Development/Router",
+    title: "Backend",
     skills: ["Ruby on Rails", "Hotwire (Turbo + Stimulus)", "MySQL"],
   },
   {
@@ -98,7 +98,7 @@ export const projectsData: Project[] = [
     id: "room-production",
     subLabel: "2024",
     title: "Room Production",
-    description: "Website showcase for a garment brand (Formerly Youniform) featuring catalog presentation, clean layout, and Framer Motion animation. Built to showcase catalog showcase & custom product lines for international clients.",
+    description: "Website showcase for a garment brand (Formerly Youniform) featuring catalog presentation, clean layout, and Framer Motion animation. Built to showcase the brand's catalog and custom product lines.",
     stack: ["Next.js", "Tailwind CSS", "Framer Motion"],
     rightColType: "metric",
     metricLabel: "METRIC",

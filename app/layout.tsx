@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Fikri Bintang Achmada | Frontend Developer & UI/UX Designer",
-  description: "Personal portfolio of Fikri Bintang Achmada, a Software Engineering fresh graduate from Politeknik Negeri Bali. Specialized in React.js, Tailwind CSS, and Figma.",
+  description: "Fikri Bintang Achmada is a Frontend Developer & UI/UX Designer in Bali, Indonesia, building with React, Next.js, and Rails/Hotwire. Open to remote roles.",
   keywords: [
     "Fikri Bintang Achmada",
     "Frontend Developer",
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://feekport.vercel.app",
     title: "Fikri Bintang Achmada | Frontend Developer & UI/UX Designer",
-    description: "Frontend focused developer currently working fullstack with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
+    description: "Fikri Bintang Achmada is a Frontend Developer & UI/UX Designer in Bali, Indonesia, building with React, Next.js, and Rails/Hotwire. Open to remote roles.",
     siteName: "Fikri Bintang Achmada Portfolio",
   },
   twitter: {
     card: "summary_large_image",
     title: "Fikri Bintang Achmada | Frontend Developer & UI/UX Designer",
-    description: "Frontend focused developer currently working fullstack with Ruby on Rails and Hotwire. I care most about design — from Figma to production code.",
+    description: "Fikri Bintang Achmada is a Frontend Developer & UI/UX Designer in Bali, Indonesia, building with React, Next.js, and Rails/Hotwire. Open to remote roles.",
   },
   icons: {
     icon: "/icon.png",
